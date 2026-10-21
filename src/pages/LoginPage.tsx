@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import type { ErrorDto } from '../assets/api/auth';
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -17,9 +18,10 @@ export function LoginPage() {
     setLoading(true);
     try {
       await login(username, password);
-      navigate('/', { replace: true });
-    } catch (err: any) {
-      setError(err.response?.data?.message ?? 'Неверный логин или пароль');
+      navigate('/profile', { replace: true });
+    } catch (err) {
+      const dto = err as Partial<ErrorDto>;
+      setError(dto?.message ?? 'Неверный логин или пароль');
     } finally {
       setLoading(false);
     }

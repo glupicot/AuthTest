@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
-import { authApi } from '..//assets/api/auth';
-
-const TOKEN_KEY = 'accessToken';
+import { authApi } from '../assets/api/auth';
+import { TOKEN_KEY } from '../assets/api/client';
 
 interface AuthContextValue {
   token: string | null;
@@ -12,8 +11,8 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState<string | null>(
-    () => localStorage.getItem(TOKEN_KEY),
+  const [token, setToken] = useState<string | null>(() =>
+    localStorage.getItem(TOKEN_KEY),
   );
 
   const login = async (username: string, password: string) => {
