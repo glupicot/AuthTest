@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
-import { authApi } from '../api/auth';
+import { authApi } from '..//assets/api/auth';
 
 const TOKEN_KEY = 'accessToken';
 
