@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './auth/AuthContext';
 import { ProtectedRoute } from './auth/ProtectedRoute';
 import { LoginPage } from './pages/LoginPage';
-// import { HomePage } from './pages/HomePage';
+import { HomePage } from './pages/HomePage';
 
 export default function App() {
   return (
@@ -10,10 +10,8 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<div>Главная (защищено)</div>} />
-            {/* остальные защищённые роуты */}
+            <Route path="/" element={<HomePage />} />
           </Route>
         </Routes>
       </AuthProvider>
